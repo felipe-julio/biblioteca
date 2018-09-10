@@ -77,7 +77,7 @@ namespace Biblioteca.Controllers
             ViewBag.NomesDosClientes = this.bibliotecaContexto.Clientes.ToList().Select(c => new SelectListItem()
             { Text = c.Nome, Value = c.Id.ToString() }).ToList();
 
-            ViewBag.TitulosDosLivros = this.bibliotecaContexto.Livros.ToList().Select(c => new SelectListItem()
+            ViewBag.TitulosDosLivros = this.bibliotecaContexto.Livros.ToList().Where(x => x.Situacao == 'A').Select(c => new SelectListItem()
             { Text = c.Titulo, Value = c.Id.ToString() }).ToList();
 
             return View("./Views/Emprestimo/Manter.cshtml");
@@ -89,6 +89,10 @@ namespace Biblioteca.Controllers
             if (model.Id.Equals(new Guid()))
             {
                 model.Id = Guid.NewGuid();
+                Livro livro = (Livro)bibliotecaContexto.Livros.ToList().FirstOrDefault(x => x.Id == model.IdLivro);
+
+                livro.Situacao = 'I';
+                bibliotecaContexto.Livros.Update(livro);
 
                 bibliotecaContexto.Emprestimos.Add(model);
             }
