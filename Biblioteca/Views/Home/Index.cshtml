@@ -1,7 +1,58 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
 }
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
 
 <div class="container">
+
     <h2>Bem vindo Biblioteca </h2>
+
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            Livros Não Emprestados
+        </div>
+        <div class="panel-body">
+            <table class="table table-bordered" id="Table">
+                <tr>
+                    <th>Id</th>
+                    <th>Titulo</th>
+                    <th>Autor</th>
+                    <th>Editora</th>
+                    </tr>
+            </table>
+        </div>
+    </div>
+
+    <script>
+        $(document).ready(function () {
+            $.ajax({
+                type: "GET",
+                url: "/api/LivroApi/livrosativos",
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (data) {
+                    $("#DIV").html('');
+                    var DIV = '';
+                    $.each(data, function (i, item) {
+                        var rows = "<tr>" +
+                            "<td id='Id'>" + item.id + "</td>" +
+                            "<td id='Titulo'>" + item.titulo + "</td>" +
+                            "<td id='Autor'>" + item.autor + "</td>" +
+                            "<td id='Editora'>" + item.editora + "</td>" +
+                            "</tr>";
+                        $('#Table').append(rows);
+                    });
+                    console.log(data);
+                }, 
+
+                failure: function (data) {
+                    alert(data.responseText);
+                }, 
+                error: function (data) {
+                    alert(data.responseText);
+                } 
+
+            });
+        });
+    </script>
 </div>
