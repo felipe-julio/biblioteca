@@ -1,0 +1,52 @@
+﻿@model Biblioteca.Models.Cliente
+
+@{
+    ViewData["Title"] = "Editar";
+}
+
+<h2>Editar</h2>
+<h2>Editar</h2>
+
+@using (Html.BeginForm("Salvar", "Cliente", FormMethod.Post))
+{
+    @Html.ValidationSummary(true)
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Campo</th>
+                <th>Valor</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>@Html.LabelFor(x => x.Id)</td>
+                <td>
+                    @Html.DisplayFor(x => x.Id)
+                    @Html.HiddenFor(x => x.Id)
+                </td>
+            </tr>
+            <tr>
+                <td>@Html.Label("Nome")</td>
+                <td>@Html.TextBoxFor(x => x.Nome, new { maxlength = 50 }) @Html.ValidationMessageFor(model => model.Nome)</td>
+            </tr>
+            <tr>
+                <td>@Html.Label("Cpf")</td>
+                <td>@Html.TextBoxFor(x => x.Cpf, new { maxlength = 11 }) @Html.ValidationMessageFor(model => model.Cpf)</td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>
+                    <input type="submit" class="btn btn-primary" value="Salvar" />
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+}
+@section scripts
+    {
+    <script src="@Url.Content("~/Scripts/jquery.validate.min.js")"></script>
+    <script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")"></script>
+}
+

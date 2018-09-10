@@ -1,0 +1,64 @@
+﻿@model Biblioteca.Models.Livro
+
+@{
+    ViewData["Title"] = "Editar";
+}
+
+<h2>Editar</h2>
+
+@using (Html.BeginForm("Salvar", "Livro", FormMethod.Post))
+{
+    @Html.ValidationSummary(true)
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Campo</th>
+                <th>Valor</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>@Html.LabelFor(x => x.Id)</td>
+                <td>
+                    @Html.DisplayFor(x => x.Id)
+                    @Html.HiddenFor(x => x.Id)
+                </td>
+            </tr>
+            <tr>
+                <td>@Html.Label("Titulo")</td>
+                <td>@Html.TextBoxFor(x => x.Titulo, new { maxlength = 50 }) @Html.ValidationMessageFor(model => model.Titulo)</td>
+            </tr>
+            <tr>
+                <td>@Html.Label("Autor")</td>
+                <td>@Html.TextBoxFor(x => x.Autor, new { maxlength = 50 }) @Html.ValidationMessageFor(model => model.Autor)</td>
+            </tr>
+            <tr>
+                <td>@Html.Label("Editora")</td>
+                <td>@Html.TextBoxFor(x => x.Editora, new { maxlength = 50 }) @Html.ValidationMessageFor(model => model.Editora)</td>
+            </tr>
+            <tr>
+                @Html.DropDownListFor(model => model.Situacao, new SelectList(
+                  new List<Object>{
+                       new { value = 'A' , text = "Ativo"  },
+                       new { value = 'I' , text = "Inativo" },
+                    },
+                  "value",
+                  "text",
+                   2))
+            </tr>
+            <tr>
+                <td></td>
+                <td>
+                    <input type="submit" class="btn btn-primary" value="Salvar" />
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+}
+@section scripts
+    {
+    <script src="@Url.Content("~/Scripts/jquery.validate.min.js")"></script>
+    <script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")"></script>
+}

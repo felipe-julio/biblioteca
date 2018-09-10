@@ -1,0 +1,71 @@
+﻿@model Biblioteca.Models.Emprestimo
+
+@{
+    ViewData["Title"] = "Editar";
+}
+
+<h2>Editar</h2>
+
+@using (Html.BeginForm("Salvar", "Emprestimo", FormMethod.Post))
+{
+    @Html.ValidationSummary(true)
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Campo</th>
+                <th>Valor</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>@Html.LabelFor(x => x.Id)</td>
+                <td>
+                    @Html.DisplayFor(x => x.Id)
+                    @Html.HiddenFor(x => x.Id)
+                </td>
+            </tr>
+            <tr>
+                <td>@Html.Label("Cliente")</td>
+                <td>
+                    <select asp-for="IdCliente"
+                            asp-items="@ViewBag.NomesDosClientes"></select>
+                </td>
+            </tr>
+            <tr>
+                <td>@Html.Label("Livro :")</td>
+                <td>
+                    <select asp-for="IdLivro"
+                            asp-items="@ViewBag.TitulosDosLivros"></select>
+                </td>
+            </tr>
+            <tr>
+                <td>@Html.Label("Data de Emprestimo :")</td>
+                <td>
+                    <input asp-for="DataDeInicio" class="form-control">
+                    <span asp-validation-for="DataDeInicio" class="text-danger"></span>
+                </td>
+            </tr>
+            <tr>
+                <td>@Html.Label("Data de Devolução :")</td>
+                <td>
+                    <input asp-for="DataDeDevolucao" class="form-control">
+                    <span asp-validation-for="DataDeDevolucao" class="text-danger"></span>
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>
+                    <input type="submit" class="btn btn-primary" value="Salvar" />
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+}
+@section scripts
+    {
+    <script src="@Url.Content("~/Scripts/jquery.validate.min.js")"></script>
+    <script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")"></script>
+}
+

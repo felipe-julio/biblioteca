@@ -1,0 +1,59 @@
+﻿@model IEnumerable<Biblioteca.Models.Emprestimo>
+
+@{
+    ViewData["Title"] = "Emprestimos";
+}
+
+<h2>Emprestimos</h2>
+
+<p>
+    <a asp-controller="Emprestimo" asp-action="Novo" class="btn btn-primary">Cadastrar Emprestimo</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.Label("Codigo do Emprestimo")
+            </th>
+            <th>
+                @Html.Label("Cliente")
+            </th>
+            <th>
+                @Html.Label("Livro")
+            </th>
+            <th>
+                @Html.Label("Data de Emprestimo")
+            </th>
+            <th>
+                @Html.Label("Data de Devolução")
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Cliente.Nome)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Livro.Titulo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DataDeInicio)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DataDeDevolucao)
+            </td>
+            <td>
+                @Html.ActionLink("Editar", "Editar", "Emprestimo", new { id = item.Id }, new { @class = "btn btn-primary" })
+                @Html.ActionLink("Detalhar", "Detalhar", "Emprestimo", new { id = item.Id }, new { @class = "btn btn-primary" })
+                @Html.ActionLink("Excluir", "Excluir", new { id = item.Id }, new { @class = "btn btn-danger" })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

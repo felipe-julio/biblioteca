@@ -1,0 +1,44 @@
+﻿@model Biblioteca.Models.Emprestimo
+
+
+@{
+    ViewData["Title"] = "Detalhar";
+}
+
+<h2>Detalhar</h2>
+
+<div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Campo</th>
+                <th>Valor</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>@Html.LabelFor(x => x.Id)</td>
+                <td>@Html.Label(Model.Id.ToString())</td>
+            </tr>
+            <tr>
+                <td>@Html.Label("Cliente")</td>
+                <td>@Html.Label(Model.Cliente.Nome)</td>
+            </tr>
+            <tr>
+                <td>@Html.Label("Livro")</td>
+                <td>@Html.Label(Model.Livro.Titulo)</td>
+            </tr>
+            <tr>
+                <td>@Html.Label("Date de Emprestimo")</td>
+                <td>@Html.DisplayFor(x => x.DataDeInicio)</td>
+            </tr>
+            <tr>
+                <td>@Html.Label("Date de Devolução")</td>
+                <td>@Html.DisplayFor(x => x.DataDeDevolucao)</td>
+            </tr>
+        </tbody>
+    </table>
+    <div>
+        <a asp-action="Index" class="btn btn-primary">voltar para lista</a>
+    </div>
+</div>

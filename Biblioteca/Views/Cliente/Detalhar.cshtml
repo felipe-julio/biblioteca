@@ -1,0 +1,35 @@
+﻿@model Biblioteca.Models.Cliente
+
+@{
+    ViewData["Title"] = "Detalhar";
+}
+
+<h2>Detalhar</h2>
+
+<div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Campo</th>
+                <th>Valor</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>@Html.LabelFor(x => x.Id)</td>
+                <td>@Html.Label(Model.Id.ToString())</td>
+            </tr>
+            <tr>
+                <td>@Html.Label("Nome")</td>
+                <td>@Html.Label(Model.Nome)</td>
+            </tr>
+            <tr>
+                <td>@Html.Label("Cpf")</td>
+                <td>@Html.Label(Model.Cpf)</td>
+            </tr>
+        </tbody>
+    </table>
+    <div>
+        <a asp-action="Index"  class="btn btn-primary">voltar para lista</a>
+    </div>
+</div>

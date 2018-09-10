@@ -1,0 +1,44 @@
+﻿@model Biblioteca.Models.Livro
+
+@{
+    ViewData["Title"] = "Detalhes";
+}
+
+<h2>Detalhes</h2>
+
+<div>
+    <h4>Livro</h4>
+    <hr />
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Campo</th>
+                <th>Valor</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>@Html.LabelFor(x => x.Id)</td>
+                <td>@Html.Label(Model.Id.ToString())</td>
+            </tr>
+            <tr>
+                <td>@Html.Label("Titulo")</td>
+                <td>@Html.Label(Model.Titulo)</td>
+            </tr>
+            <tr>
+                <td>@Html.Label("Autor")</td>
+                <td>@Html.Label(Model.Autor)</td>
+            </tr>
+            <tr>
+                <td>@Html.Label("Editora")</td>
+                <td>@Html.Label(Model.Editora)</td>
+            </tr>
+            <tr>
+                <td>@Html.Label("Situação")</td>
+                <td>@Html.Label((Model.Situacao == 'A' ? "Ativo" : "Inativo"))</td>
+            </tr>
+        </tbody>
+    </table>
+        <a asp-action="Index" class="btn btn-primary" >voltar para lista</a>
+</div>

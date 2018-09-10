@@ -1,0 +1,47 @@
+﻿@model IEnumerable<Biblioteca.Models.Cliente>
+
+@{
+    ViewData["Title"] = "Clientes";
+}
+
+<h2>Clientes</h2>
+
+<p>
+    <a asp-controller="Cliente" asp-action="Novo" class="btn btn-primary">Cadastrar Cliente</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.Label("Codigo")
+            </th>
+            <th>
+                @Html.Label("Nome")
+            </th>
+            <th>
+                @Html.Label("Cpf")
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nome)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Cpf)
+            </td>
+            <td>
+                @Html.ActionLink("Editar", "Editar", "Cliente", new { id = item.Id }, new { @class = "btn btn-primary" })
+                @Html.ActionLink("Detalhar", "Detalhar", "Cliente", new { id = item.Id }, new { @class = "btn btn-primary" })
+                @Html.ActionLink("Excluir", "Excluir", new { id = item.Id }, new { @class = "btn btn-danger" })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

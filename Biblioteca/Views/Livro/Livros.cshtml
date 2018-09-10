@@ -1,0 +1,59 @@
+﻿@model IEnumerable<Biblioteca.Models.Livro>
+
+@{
+    ViewData["Title"] = "Livros";
+}
+
+<h2>Livros</h2>
+
+<p>
+    <a asp-controller="Livro" asp-action="Novo" class="btn btn-primary">Cadastrar Livro</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.Label("Codigo do Livro")
+            </th>
+            <th>
+                @Html.Label("Titulo")
+            </th>
+            <th>
+                @Html.Label("Autor")
+            </th>
+            <th>
+                @Html.Label("Editora")
+            </th>
+            <th>
+                @Html.Label("Situação")
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Titulo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Autor)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Editora)
+            </td>
+            <td>
+                @Html.Label((item.Situacao == 'A' ? "Ativo" : "Inativo"))
+            </td>
+            <td>
+                @Html.ActionLink("Editar", "Editar", "Livro", new { id = item.Id }, new { @class = "btn btn-primary" })
+                @Html.ActionLink("Detalhar", "Detalhar", "Livro", new { id = item.Id }, new { @class = "btn btn-primary" })
+                @Html.ActionLink("Excluir", "Excluir", new { id = item.Id }, new { @class = "btn btn-danger" })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

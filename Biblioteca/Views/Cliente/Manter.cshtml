@@ -1,0 +1,44 @@
+﻿@model Biblioteca.Models.Cliente
+
+@{
+    ViewData["Title"] = "Manter";
+}
+
+<h2>Manter</h2>
+
+
+@using (Html.BeginForm("Salvar", "Cliente", FormMethod.Post))
+{
+    @Html.ValidationSummary(true)
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Campo</th>
+                <th>Valor</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>@Html.Label("Nome")</td>
+                <td>@Html.TextBoxFor(x => x.Nome, new { maxlength = 50 }) @Html.ValidationMessageFor(model => model.Nome)</td>
+            </tr>
+            <tr>
+                <td>@Html.Label("Cpf(Somente os numeros)")</td>
+                <td>@Html.TextBoxFor(x => x.Cpf, new { maxlength = 11 }) @Html.ValidationMessageFor(model => model.Cpf)</td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>
+                    <input type="submit" class="btn btn-primary" value="Salvar" />
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+}
+@section scripts
+    {
+    <script src="@Url.Content("~/Scripts/jquery.validate.min.js")"></script>
+    <script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")"></script>
+}
